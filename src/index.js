@@ -40,6 +40,11 @@ const schema = {
       description:
         "Path to prettier config file",
       type: "string",
+    },
+    useDefaultExport: {
+      description:
+        "Enable the use of locals default export. Defaults to `false`",
+      type: "boolean"
     }
   },
   additionalProperties: false,
@@ -88,7 +93,8 @@ module.exports = function (content, ...args) {
   const cssModuleDefinition = generateGenericExportInterface(
     cssModuleKeys,
     filenameToPascalCase(filename),
-    options.disableLocalsExport
+    options.disableLocalsExport,
+    options.useDefaultExport
   );
 
   applyFormattingAndOptions(cssModuleDefinition, options)
